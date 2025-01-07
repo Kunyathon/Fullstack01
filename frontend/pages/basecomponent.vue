@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 const experience = {
   logo: "https://cdn-images-1.medium.com/v2/resize:fit:400/1*r5OuqrQCyLCf11ecU1ccjA@2x.png",
   title: "Senior Engineering Manager",
@@ -128,4 +129,5 @@ const portfolios = [
             @more="console.log('clicked on more')"
         />
   </section>
+
 </template>

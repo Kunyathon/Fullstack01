@@ -34,5 +34,6 @@ export const usePortfolioValidationSchema = () => yup.object({
 // TODO: 1. สร้างกฏ validation สำหรับการ login
 export const useLoginValidationSchema = () => yup.object({
     username: yup.string().required().label('Username'),
+    // username: yup.string().min(3).required().label('Username'),
     password: yup.string().required().label('Password'),
 });

@@ -20,7 +20,22 @@ const onSubmit = handleSubmit(values => {
         @submit="onSubmit"
         class="space-y-3"
     >
+    <div>
+            <!-- TODO: 6. มาใช้กับ username -->
+            <BaseInput
+                name="username"
+                placeholder="Username"
+            />
+        </div>
         <div>
+            <!-- TODO: 7. มาใช้กับ password -->
+            <BaseInput
+                name="password"
+                type="password"
+                placeholder="Password"
+            />
+        </div>
+        <!-- <div>
             <input
                 v-bind="username"
                 name="username"
@@ -34,7 +49,7 @@ const onSubmit = handleSubmit(values => {
                 type="password"
                 placeholder="Password"
             />
-        </div>
+        </div> -->
         <div>
             <BaseButton
                 v-if="!isSubmitting"
