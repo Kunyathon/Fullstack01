@@ -1,4 +1,6 @@
 <script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+
 useHead({
     title: "Kunyathon 's portfolios",
     meta: [{ name: "description", content: "Kunyathon 's portfolios" }],
@@ -55,31 +57,77 @@ const portfolios = [
     }
 ];
 
+
+const showButton = ref(false);
+
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+    });
+};
+
+const handleScroll = () => {
+    let isPortrait = window.matchMedia("(max-width: 1024px) and (orientation: portrait)").matches;
+    if (isPortrait) {
+        showButton.value = true;
+    }
+    else if (window.scrollY > window.innerHeight / 3.5) {
+        showButton.value = true;
+    }
+    else {
+        showButton.value = false;
+    }
+};
+
+onMounted(() => {
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+});
+
+onBeforeUnmount(() => {
+    window.removeEventListener('scroll', handleScroll);
+});
+
 </script>
 
 <template>
-    <section class="mb-10">
-        <SkillList :skills="['a']" :can-edit="true" @edit="console.log('Click')"/>
-    </section>
+    <section>
+        <section class="mb-10">
+            <SkillList :skills="['a']" :can-edit="true" @edit="console.log('Click')" />
+        </section>
 
-    <section class="mb-10">
-       <ExperienceList
-            :experiences="experiences"
-            :can-edit="true"
-            :has-more-experiences="true"
-            :is-experience-visible="isExperienceVisible"
-            @edit="console.log('clicked on edit')"
-            @more="console.log('cliked on more')"
-        />
-    </section>
+        <section class="mb-10">
+            <ExperienceList :experiences="experiences" :can-edit="true" :has-more-experiences="true"
+                :is-experience-visible="isExperienceVisible" @edit="console.log('clicked on edit')"
+                @more="console.log('cliked on more')" />
+        </section>
 
-    <section class="mb-10">
-        <PortfolioList
-            :portfolios="portfolios"
-            :can-edit="true"
-            :is-getting-portfolios="false"
-            :has-more-portfolios="true"
-            @more="console.log('clicked on more')"
-        />
+        <section class="mb-10">
+            <PortfolioList :portfolios="portfolios" :can-edit="true" :is-getting-portfolios="false"
+                :has-more-portfolios="true" @more="console.log('clicked on more')" />
+        </section>
+
+        <div>
+            <button v-if="showButton" @click="scrollToTop" class="scroll-to-top">
+                Scroll to Top
+            </button>
+        </div>
     </section>
 </template>
+
+<style scoped>
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    /* display: none;  */
+}
+</style>

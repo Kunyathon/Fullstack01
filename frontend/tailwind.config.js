@@ -25,7 +25,6 @@ module.exports = {
         'dark-green': '#26a604',
         'line-dark-green': '#269408',
         'light-green': '#b4df84',
-        black:'#212224',
         basewhite:'#d3d3d3'
       },
       fontSize: {
