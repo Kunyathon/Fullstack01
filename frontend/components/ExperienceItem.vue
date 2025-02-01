@@ -1,18 +1,13 @@
 <script setup>
-// TODO: 1. install moment
-// moment จัดการเรื่อง time date
 import moment from 'moment';
 
-// TODO: 2. design props
 const props = defineProps({
     experience: Object,
 });
 
-// TODO: 3. design props
 //computed คล้ายๆกับ usecallback
 const experienceType = computed(() => useExperienceType(props.experience.type));
 
-// TODO: 4. ใช้ moment ช่วยแปลงวันเวลาเริ่ม จบ และระยะเวลา
 const start = computed(() => moment(props.experience.start).format('MMM YYYY'))
 const end = computed(() => props.experience.end ? moment(props.experience.end).format('MMM YYYY') : 'Present')
 const diff = computed(() => {
@@ -28,7 +23,6 @@ const diff = computed(() => {
 </script>
 
 <template>
-    <!-- TODO: 6. แสดงผล -->
     <div class="md:flex md:space-x-2">
         <div class="flex space-x-3 md:flex-1">
             <div>
@@ -38,28 +32,28 @@ const diff = computed(() => {
                 />
             </div>
             <div class="text-sm flex-1 md:text-base">
-                <h3 class="font-bold text-base md:text-lg">
+                <h3 class="text-white font-bold text-base md:text-lg">
                     {{ experience.title }}
                 </h3>
                 <div>
 
-                    <span>{{ experience.company }}</span>
-                    <span> · </span>
-                    <span>{{ experienceType }}</span>
+                    <span class="text-white">{{ experience.company }}</span>
+                    <span class="text-white"> · </span>
+                    <span class="text-white">{{ experienceType }}</span>
                 </div>
                 <div>
-                    <span>
+                    <span class="text-white">
                         {{ start }} - {{ end }} · {{ diff }}</span>
                 </div>
 
                 <div class="py-3 md:hidden">
-                    <p class="whitespace-pre-wrap">{{ experience.detail }}</p>
+                    <p class="text-white whitespace-pre-wrap">{{ experience.detail }}</p>
                 </div>
                 <BaseBadgeList :badges="experience.skills" />
             </div>
         </div>
         <div class="hidden md:block md:flex-1">
-            <p class="whitespace-pre-wrap">{{ experience.detail }}</p>
+            <p class="text-white whitespace-pre-wrap">{{ experience.detail }}</p>
         </div>
     </div>
 </template>

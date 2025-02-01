@@ -24,6 +24,9 @@ export const useActionableVariantClass = (theme) => {
         case 'disabled':
             return 'text-center text-grey bg-transparent rounded-lg align-middle border-2 !py-1.5 border-grey [&>*]:align-middle';
 
+        case 'black':
+            return 'text-center text-white bg-[#000000] rounded-lg align-middle shadow-md shadow-[#211b1b] [&>*]:align-middle hover:bg-[#1a1a1a] active:shadow-inner active:shadow-darker-primary active:bg-dark-primary';
+
         case 'primary':
         default:
             return 'text-center text-white bg-primary rounded-lg align-middle shadow-md shadow-tertiary [&>*]:align-middle hover:bg-secondary active:shadow-inner active:shadow-darker-primary active:bg-dark-primary';

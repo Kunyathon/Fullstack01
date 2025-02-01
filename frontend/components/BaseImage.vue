@@ -1,5 +1,4 @@
 <script setup>
-// TODO: 7. ป้องกัน fallthrough
 defineOptions({
     inheritAttrs: false,
 });
@@ -10,9 +9,6 @@ defineProps({
 </script>
 
 <template>
-    <!-- TODO: 8. ป้องกัน image ที่ไม่ใช่ url -->
-    <!-- TODO: 9. รู้จัก default ของ slot -->
-    <!-- TODO: 10. บังคับ fallthrough ไปลงเฉพาะที่ -->
     <img
         v-if="useIsValidUrl(url)"
         :src="url"

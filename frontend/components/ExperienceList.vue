@@ -1,5 +1,4 @@
 <script setup>
-// TODO: 1. design props
 defineProps({
     experiences: Array,
     canEdit: Boolean,
@@ -7,14 +6,11 @@ defineProps({
     isExperienceVisible: Function,
 });
 
-// TODO: 2. design emits
 defineEmits(['edit', 'more']);
 </script>
 
 <template>
-    <!-- TODO: 3. show -->
-    <!-- TODO: 4. v-for -->
-    <h2 class="text-xl font-bold mb-3 flex justify-between">
+    <h2 class="text-white text-xl font-bold mb-3 flex justify-between">
         <span>Experiences</span>
         <BaseButton
             v-if="canEdit"

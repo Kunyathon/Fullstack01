@@ -1,5 +1,4 @@
 <script setup>
-// TODO: 4. ใช้งาน composable กับ Button
 
 const props = defineProps({
     size: String,
