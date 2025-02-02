@@ -2,6 +2,10 @@
 import { useAuthStore } from '@/stores/auth';
 import { usePortfolioStore } from '@/stores/portfolio';
 
+definePageMeta({
+    layout: 'detail',
+});
+
 const authStore = useAuthStore();
 const store = usePortfolioStore();
 const route = useRoute();
@@ -16,11 +20,12 @@ useHead({
 </script>
 
 <template>
-    <PortfolioForm
+        <PortfolioForm
         :portfolio="store.newPortfolio()"
         :can-delete="authStore.canEdit"
         @submit="store.createPortfolio"
         @cancel="navigateTo('/')"
         @delete="store.deletePortfolio(route.params.id)"
     />
+       
 </template>

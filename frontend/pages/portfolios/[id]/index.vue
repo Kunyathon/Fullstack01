@@ -2,6 +2,10 @@
 import { useAuthStore } from '@/stores/auth';
 import { usePortfolioStore } from '@/stores/portfolio';
 
+definePageMeta({
+    layout: 'detail',
+});
+
 const authStore = useAuthStore();
 const store = usePortfolioStore();
 

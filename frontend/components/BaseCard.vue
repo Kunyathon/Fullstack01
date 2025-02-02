@@ -9,7 +9,7 @@ defineProps({
 </script>
 
 <template>
-    <div class="shadow-md rounded-md overflow-hidden">
+    <div class="shadow-md rounded-md overflow-hidden bg-black">
         <div
             class="bg-cover w-full h-[200px] bg-center"
             :style="`background-image: url('${cover}')`"
