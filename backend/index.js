@@ -1,9 +1,30 @@
 // TODO: 1. import dotenv เพื่อ import .env มาเป็น process.env
 import 'dotenv/config';
 import useServers from '#app/di/servers';
-console.log("env port",process.env.APP_PORT);
+import useServices from '#app/di/services';
+import useRepos from '#app/di/repositories';
+console.log("env MONGO_URI",process.env.MONGO_URI);
 
-const servers = useServers({}, {
+const { userRepo  } = useRepos({
+    db: {
+        mongo: {
+            uri: process.env.MONGO_URI,
+        }
+    }
+});
+
+const {
+    authService,
+    profileService,
+    portfolioService,
+} = useServices({userRepo }, {
+    jwt: {
+        secret: process.env.JWT_SECRET,
+        algorithms: process.env.JWT_ALGORITHMS.split(','),
+    },
+});
+
+const servers = useServers({ authService, profileService,portfolioService}, {
     http: {
         port: process.env.APP_PORT,
         jwt: {

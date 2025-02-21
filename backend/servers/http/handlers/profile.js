@@ -2,7 +2,7 @@ import express from 'express';
 import asyncHandler from 'express-async-handler';
 import { useJwt } from '#app/servers/http/middlewares/jwt'
 
-export default ({ }, config) => {
+export default ({ profileService }, config) => {
 
     function router() {
         const router = express.Router()
@@ -14,34 +14,16 @@ export default ({ }, config) => {
     }
 
     async function getProfile(_, res) {
-        res.status(200).json({
-            data: {
-                overallSkills: [
-                    "string"
-                ],
-                experiences: [
-                    {
-                        logo: "string",
-                        title: "string",
-                        company: "string",
-                        type: "string",
-                        start: "string",
-                        end: "string",
-                        skills: [
-                            "string"
-                        ],
-                        detail: "string"
-                    }
-                ]
-            }
-        });
+        console.log("profileService",profileService);
+        const profile = await profileService.getProfile();
+
+        res.status(200).json({ data: profile });
     }
 
     async function updateProfile(req, res) {
-        res.status(200).json({
-            status: true,
-            id: '1234',
-        });
+        const profile = await profileService.updateProfile(req.body);
+
+        res.status(200).json({ status: true, id: profile.id, });
     }
 
     return {
