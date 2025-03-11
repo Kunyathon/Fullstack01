@@ -1,6 +1,6 @@
 import { usePortfolioValidationSchema, useIdValidationSchema } from '#app/utils/validation';
 
-export default ({ }) => {
+export default ({ portfolioRepo }) => {
     const validateSchema = usePortfolioValidationSchema();
     const idValidationSchema = useIdValidationSchema();
 
@@ -22,12 +22,15 @@ export default ({ }) => {
         const sanitizedPage = Math.max(page, 1);
         const sanitizedLimit = Math.min(limit, 10);
         const offset = (sanitizedPage - 1) * sanitizedLimit;
+        portfolios = await portfolioRepo.getPortfolios(offset, sanitizedLimit);
 
         return portfolios;
     }
 
     async function getPortfolio(id) {
         const validatedId = await idValidationSchema.validate(id);
+
+        const portfolio = await portfolioRepo.getPortfolio(validatedId);
 
         return portfolio;
     }
@@ -36,8 +39,7 @@ export default ({ }) => {
         const validatedPortfolio = await validateSchema.validate(draftedPortfolio);
 
         const sanitizedPortfolio = sanitizePortfolio(validatedPortfolio);
-
-
+        const portfolio = await portfolioRepo.createPortfolio(sanitizedPortfolio);
         return portfolio;
     }
 
@@ -47,6 +49,8 @@ export default ({ }) => {
 
         const sanitizedPortfolio = sanitizePortfolio(validatedPortfolio);
 
+        const portfolio = await portfolioRepo.updatePortfolio(validatedId, sanitizedPortfolio);
+
         return portfolio;
     }
 
@@ -54,6 +58,7 @@ export default ({ }) => {
 
         const validatedId = await idValidationSchema.validate(id);
 
+        const result = await portfolioRepo.deletePortfilio(validatedId);
         return result;
     }
 

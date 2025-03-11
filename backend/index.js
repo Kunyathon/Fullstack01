@@ -5,7 +5,7 @@ import useServices from '#app/di/services';
 import useRepos from '#app/di/repositories';
 console.log("env MONGO_URI",process.env.MONGO_URI);
 
-const { userRepo  } = useRepos({
+const { userRepo ,profileRepo , portfolioRepo, } = useRepos({
     db: {
         mongo: {
             uri: process.env.MONGO_URI,
@@ -17,7 +17,7 @@ const {
     authService,
     profileService,
     portfolioService,
-} = useServices({userRepo }, {
+} = useServices({userRepo ,profileRepo ,  portfolioRepo,}, {
     jwt: {
         secret: process.env.JWT_SECRET,
         algorithms: process.env.JWT_ALGORITHMS.split(','),
