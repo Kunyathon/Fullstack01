@@ -1,11 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-console.log('ENV Base API URL:', process.env.NUXT_PUBLIC_BASE_API_URL);
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
   runtimeConfig: {
     public: {
       baseApiUrl: '',
+      chatGptApiUrl: process.env.VUE_APP_CHAT_GPT
     },
   },
 

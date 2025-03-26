@@ -9,7 +9,6 @@ export default ({ db }) => {
     const userRepo = useUserRepo(connection);
     const profileRepo = useProfileRepo(connection);
     const portfolioRepo = usePortfolioRepo(connection);
-    console.log("userRepo",userRepo);
     
     return {
         userRepo,

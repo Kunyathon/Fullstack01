@@ -1,9 +1,7 @@
-// TODO: 1. import dotenv เพื่อ import .env มาเป็น process.env
 import 'dotenv/config';
 import useServers from '#app/di/servers';
 import useServices from '#app/di/services';
 import useRepos from '#app/di/repositories';
-console.log("env MONGO_URI",process.env.MONGO_URI);
 
 const { userRepo ,profileRepo , portfolioRepo, } = useRepos({
     db: {

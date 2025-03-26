@@ -12,7 +12,6 @@ export default ({ authService ,profileService,portfolioService}, config) => {
     const portfolio = usePortfolioHandlers({ portfolioService }, config.http);
 
     app.use(express.json());
-    console.log("cors",config.http.cors);
     
     app.use(cors(config.http.cors));
     app.use('/v1/auth', auth.router());

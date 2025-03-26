@@ -14,7 +14,6 @@ export default ({ profileService }, config) => {
     }
 
     async function getProfile(_, res) {
-        console.log("profileService",profileService);
         const profile = await profileService.getProfile();
 
         res.status(200).json({ data: profile });

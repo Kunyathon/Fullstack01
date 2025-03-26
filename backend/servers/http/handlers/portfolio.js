@@ -18,9 +18,7 @@ export default ({ portfolioService }, config) => {
 
     async function getPortfolios(req, res) {
         const query = req.query;
-        console.log("query",query,portfolioService);
         const portfolios = await portfolioService.getPortfolios(query.page, query.limit);
-        console.log("portfolios",portfolios);
         res.status(200).json({
             data: portfolios,
         });

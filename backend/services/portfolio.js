@@ -17,7 +17,6 @@ export default ({ portfolioRepo }) => {
 
     async function getPortfolios(page, limit) {
         let portfolios = [];
-        console.log("page",page, limit);
         
         const sanitizedPage = Math.max(page, 1);
         const sanitizedLimit = Math.min(limit, 10);

@@ -5,7 +5,6 @@ import { useProfileStore } from '@/stores/profile';
 
 const authStore = useAuthStore();
 const store = useProfileStore();
-console.log("store",store);
 
 useHead({
     title: "Kunyathon 's portfolios",

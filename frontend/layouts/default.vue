@@ -93,7 +93,30 @@ const sendMessage = async () => {
     const userMessage = userInput.value;
     messages.value.push({ sender: "user", text: userMessage });
     userInput.value = "";
-    // การส่งข้อความถึง ChatGPT สามารถเพิ่มได้ตามโค้ดตัวอย่างก่อนหน้า
+    const config = useRuntimeConfig();
+    console.log(config.public.chatGptApiUrl); 
+
+    try {
+        const response = await fetch("https://api.openai.com/v1/chat/completions", {
+            method: "POST",
+            headers: {
+                authorization: `Bearer ${config.public.chatGptApiUrl}`, 
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                model: "gpt-3.5-turbo",
+                messages: [{ role: "user", content: userMessage }],
+            }),
+        });
+
+        const data = await response.json();
+        const botMessage = data.choices[0].message.content;
+
+        messages.value.push({ sender: "bot", text: botMessage });
+    } catch (error) {
+        console.error("Error fetching response:", error);
+        messages.value.push({ sender: "bot", text: "❌ Error! Unable to fetch response." });
+    }
 };
 
 onMounted(() => {
